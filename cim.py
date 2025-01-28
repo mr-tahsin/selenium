@@ -51,7 +51,23 @@ try:
     )
     print(f"Navigated directly to Corporate Information Mailing page: {driver.current_url}")
 
-    # Optional: Perform additional tasks on the page
+    # Step 9: Select the dropdown and choose an option
+    # Wait for the dropdown to be clickable
+    WebDriverWait(driver, 15).until(
+        EC.element_to_be_clickable((By.XPATH, '//*[@id="select2-ContentPlaceHolder1_ddlSelectOption-container"]'))
+    )
+    
+    # Click the dropdown
+    dropdown = driver.find_element(By.XPATH, '//*[@id="select2-ContentPlaceHolder1_ddlSelectOption-container"]')
+    dropdown.click()
+
+    # Select Monthly Pay Slip from the dropdown
+    option = WebDriverWait(driver, 15).until(
+        EC.element_to_be_clickable((By.XPATH, '//li[contains(text(), "Monthly Pay Slip")]'))
+    )
+    option.click()
+
+    print("Dropdown option selected successfully.")
 
 except Exception as e:
     print(f"Error: {e}")
@@ -60,3 +76,4 @@ finally:
     # Comment the quit line for debugging purposes
     # driver.quit()
     pass
+
